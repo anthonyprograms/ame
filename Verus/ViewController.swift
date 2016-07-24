@@ -12,8 +12,13 @@ import CoreData
 class ViewController: UIViewController {
 
     var managedContext: NSManagedObjectContext!
+    
+    let tableView = UITableView()
+    let averageRatingLabel = UILabel()
+    
     var linkField: UITextField!
-    let links = ["https://google.com", "https://facebook.com", "https://twitter.com"]
+    var articles:[NSDictionary] = []
+    var links:[String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,29 +51,66 @@ class ViewController: UIViewController {
         titleImageView.contentMode = .ScaleAspectFill
         view.addSubview(titleImageView)
 
-        let tableView = UITableView(frame: CGRectMake(0, submitButton.frame.maxY+20, view.frame.size.width, view.frame.size.height - submitButton.frame.maxY+20))
+        tableView.frame = CGRectMake(0, submitButton.frame.maxY+20, view.frame.size.width, view.frame.size.height - submitButton.frame.maxY+20)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorColor = .clearColor()
         tableView.backgroundColor = .clearColor()
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         view.addSubview(tableView)
+        
+        averageRatingLabel.frame = CGRectMake(view.frame.size.width-60, 20, 50, 50)
+        averageRatingLabel.text = "-"
+        averageRatingLabel.textColor = .blackColor()
+        averageRatingLabel.font = UIFont(name: "Helvetica", size: 30)
+        averageRatingLabel.backgroundColor = .clearColor()
+        view.addSubview(averageRatingLabel)
     }
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBarHidden = true
+        
+        let articleCache = VERArticleCache(managedContext: managedContext)
+        if let articles = articleCache.getArticles() {
+            populateTableView(articles)
+            
+            if let avgRating = generateAverageRating(articles) {
+                self.averageRatingLabel.text = "\(avgRating.roundToPlaces(1))"
+            }
+        }
+    }
+    
+    func populateTableView(articles: [NSDictionary]) {
+        for article in articles {
+            guard let link = article["link"] else { return }
+            self.links.append(link as! String)
+        }
+        
+        self.tableView.reloadData()
+    }
+    
+    func generateAverageRating(articles: [NSDictionary]) -> CGFloat? {
+        var ratings:CGFloat = 0.0
+        
+        if articles.count == 0 {
+            return nil
+        }
+        
+        for article in articles {
+            guard let rating = article["rating"] else { return nil }
+            ratings += rating as! CGFloat
+        }
+        
+        return ratings/CGFloat(articles.count)
     }
     
     func submitAction() {
-        let articleVC = VERArticleViewController(link: linkField.text!)
-        
-        self.navigationController?.pushViewController(articleVC, animated: true)
+        if linkField.text != nil {
+            let articleVC = VERArticleViewController(link: linkField.text!, managedContext: managedContext)
+            
+            self.navigationController?.pushViewController(articleVC, animated: true)
+        }
     }
-    
-    func previousAction() {
-        
-    }
-
 }
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
@@ -91,10 +133,16 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {        
-        let articleVC = VERArticleViewController(link: links[indexPath.row])
+        let articleVC = VERArticleViewController(link: links[indexPath.row], managedContext: managedContext)
         
         self.navigationController?.pushViewController(articleVC, animated: true)
     }
 }
 
-
+extension CGFloat {
+    /// Rounds the double to decimal places value
+    func roundToPlaces(places:Int) -> CGFloat {
+        let divisor = pow(10.0, CGFloat(places))
+        return round(self * divisor) / divisor
+    }
+}

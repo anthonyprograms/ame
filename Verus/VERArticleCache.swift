@@ -6,6 +6,7 @@
 //  Copyright © 2016 Verus. All rights reserved.
 //
 
+import UIKit
 import Foundation
 import CoreData
 
@@ -35,15 +36,12 @@ class VERArticleCache {
         return nil
     }
     
-    func saveArticle(data: NSDictionary) {
+    func saveArticle(link: String, rating: CGFloat) {
         let articleEntity = NSEntityDescription.entityForName(articleEntityName, inManagedObjectContext: managedContext)
         
         let article = Article(entity: articleEntity!, insertIntoManagedObjectContext: managedContext)
-        article.title = "\(data["title"]!)"
-        article.text = "\(data["text"]!)"
-        article.keywords = "\(data["keywords"]!)"
-        article.descriptiveWords = "\(data["descriptiveWords"]!)"
-        article.rating = data["rating"] as? NSNumber
+        article.link = link
+        article.rating = rating
         
         do {
             try managedContext.save()

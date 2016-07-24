@@ -14,10 +14,7 @@ import CoreData
 
 extension Article {
 
-    @NSManaged var descriptiveWords: String?
-    @NSManaged var title: String?
-    @NSManaged var text: String?
+    @NSManaged var link: String?
     @NSManaged var rating: NSNumber?
-    @NSManaged var keywords: String?
 
 }

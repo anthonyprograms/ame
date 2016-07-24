@@ -8,25 +8,27 @@
 
 import UIKit
 import Cosmos
+import CoreData
 
 class VERArticleViewController: UIViewController {
     
+    var managedContext: NSManagedObjectContext!
+    
     let tableView = UITableView()
+    let titleLabel = UILabel()
+    let articleTextView = UITextView()
+    let ratingView = CosmosView()
     
     var link: String!
     
-    let data: [String] = ["0.0", "Could be better", "Munich gunman had rampage info", "I'm so happy for @tmillsfashion with the launch of his new site 750 BOOST GREY WITH GUM SOLE SOLD OUT IN 1 MINUTE Jay hype Famous viewing @ Figueroa and 12th in downtown LA 11:10PM 750 BOOST GREY WITH GUM SOLE 750 BOOST GREY WITH GUM SOLE Famous SCHLESISCHE STR AND OBERBAUMBRUCKE @ 2:30AM HECKMANNUFER AND SCHLESISCHE STR @ 3:00AM BERGHAIN AND AM WRIEZENER BAHNHOF @ 4:00AM Show at 2am SOLD OUT Famous TV premiere tonight on E @ 7PM and 11PM So happy to do a video with my brothers. Rap can be fun.M & BOGART FAMOUS VIEWINGS IN ATLANTA TONIGHT STARTING AT WESTVIEW DRIVE SW AND LEE STREET SW @ 10:30PM PEACHTREE STREET AND 11TH STREET NE @ 11:15PM"]
-    var data2:[String] = []
     var keywords: [NSDictionary] = []
+    var rating = "1.0"
     
-    var rating = "0"
-    var articleTitle = ""
-    var articleText = ""
-    
-    init(link: String) {
+    init(link: String, managedContext: NSManagedObjectContext) {
         super.init(nibName: nil, bundle: nil)
         
         self.link = link
+        self.managedContext = managedContext
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -41,32 +43,27 @@ class VERArticleViewController: UIViewController {
         VERHTTPClient().postLink(link!) { data in
             if let sentiment = data["docSentiment"] {
                 guard let score = sentiment!["score"]! else { return }
-                let r = Double("\(score)")! * 5
-                self.rating = "\(r)"
+                self.ratingView.rating = abs(Double("\(score)")! * 5)
                 
-                self.tableView.reloadData()
+                VERArticleCache(managedContext: self.managedContext).saveArticle(self.link, rating: CGFloat(self.ratingView.rating))
             }
         }
         
         VERHTTPClient().getText(link!) { data in
             guard let text = data["text"] else { return }
-            self.articleText = "\(text!)"
-            
-            self.tableView.reloadData()
+            self.articleTextView.text = "\(text!)"
         }
         
         VERHTTPClient().getTitle(link!) { data in
             guard let title = data["title"] else { return }
-            self.articleTitle = "\(title!)"
-            
-            self.tableView.reloadData()
+            self.titleLabel.text = "\(title!)"
         }
         
         VERHTTPClient().getKeywords(link!) { data in
             guard let keywords = data["keywords"] else { return }
             self.keywords = keywords as! [NSDictionary]
             
-            self.tableView.reloadData()
+            self.configureText(self.articleTextView.text, keywords: self.keywords)
         }
     }
     
@@ -74,80 +71,55 @@ class VERArticleViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.whiteColor()
-
-        tableView.frame = view.frame
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.separatorColor = .clearColor()
-        tableView.backgroundColor = .whiteColor()
-        tableView.registerClass(VERStarTableViewCell.self, forCellReuseIdentifier: "StarCell")
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-        tableView.registerClass(VERArticleTextTableViewCell.self, forCellReuseIdentifier: "TextCell")
-        view.addSubview(tableView)
-    }
-}
-
-extension VERArticleViewController: UITableViewDataSource, UITableViewDelegate {
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let mainView = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 40))
-        mainView.backgroundColor = .whiteColor()
         
-        let ratingView = CosmosView()
-        ratingView.frame = CGRectMake(20, 2, tableView.frame.size.width-40, mainView.frame.height)
+        // Rating (CosmoView)
+        ratingView.frame = CGRectMake(20, 80, view.frame.size.width/2, 40)
+        ratingView.center.x = view.center.x
         ratingView.rating = Double(self.rating)!
-        ratingView.text = data[1]
         ratingView.settings.fillMode = .Precise
         ratingView.settings.starSize = 30
         ratingView.settings.starMargin = 5
-        ratingView.settings.filledColor = UIColor(red: 32/255, green: 206/255, blue: 153/255, alpha: 1)
-        ratingView.settings.emptyBorderColor = UIColor(red: 32/255, green: 206/255, blue: 153/255, alpha: 1)
+        ratingView.settings.filledColor = UIColor(red: 0/255, green: 138/255, blue: 230/255, alpha: 1)
+//        ratingView.settings.emptyBorderColor = UIColor(red: 32/255, green: 206/255, blue: 153/255, alpha: 1)
         ratingView.settings.updateOnTouch = false
-        mainView.addSubview(ratingView)
+        view.addSubview(ratingView)
         
-        return mainView
-    }
-
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
-            let cell: VERStarTableViewCell = tableView.dequeueReusableCellWithIdentifier("StarCell", forIndexPath: indexPath) as! VERStarTableViewCell
-            
-            cell.selectionStyle = .None
-            cell.setStarRating(self.rating)
-            
-            return cell
-        }
-        if indexPath.row == 1 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
-            
-            cell.selectionStyle = .None
-            cell.textLabel?.numberOfLines = 0
-            cell.textLabel!.text = self.articleTitle
-            
-            cell.textLabel?.font = UIFont(name: "Helvetica", size: 22)
-            
-            return cell
-        } else {
-            let cell: VERArticleTextTableViewCell = tableView.dequeueReusableCellWithIdentifier("TextCell", forIndexPath: indexPath) as! VERArticleTextTableViewCell
-            
-            cell.configureText(self.articleText, keywords: self.keywords)
-            
-            return cell
-        }
+        // Title (UILabel)
+        titleLabel.frame =  CGRectMake(0, ratingView.frame.maxY + 10, view.frame.size.width-40, 50)
+        titleLabel.center.x = view.center.x
+        titleLabel.font = UIFont.systemFontOfSize(18)
+        titleLabel.text = "Loading..."
+        titleLabel.numberOfLines = 0
+        titleLabel.textColor = UIColor(red: 0/255, green: 71/255, blue: 179/255, alpha: 1)
+        view.addSubview(titleLabel)
+        
+        // Text (UITextView)
+        articleTextView.frame = CGRectMake(0, titleLabel.frame.maxY + 10, titleLabel.frame.width, view.frame.size.height - titleLabel.frame.maxY - 20)
+        articleTextView.center.x = view.center.x
+        articleTextView.font = UIFont.systemFontOfSize(15)
+        articleTextView.text = ""
+        articleTextView.textColor = .blackColor()
+        view.addSubview(articleTextView)
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if indexPath.row == 2 {
-            return tableView.frame.size.height-115
-        } else {
-            return 30
+    func configureText(text: String, keywords: [NSDictionary]) {
+        let attributed = NSMutableAttributedString(string: text)
+        
+        let font: UIFont = UIFont(name: "Helvetica", size: 15)!
+        attributed.addAttribute(NSFontAttributeName, value: font, range: NSMakeRange(0, attributed.length))
+        
+        for keyword in keywords {
+            do {
+                let regex = try NSRegularExpression(pattern: keyword["text"] as! String, options: .CaseInsensitive)
+                
+                for match in regex.matchesInString(text, options: NSMatchingOptions(), range: NSRange(location: 0, length: text.characters.count)) as [NSTextCheckingResult] {
+                    attributed.addAttribute(NSForegroundColorAttributeName, value: UIColor(red: 255/255, green: 51/255, blue: 51/255, alpha: 1), range: match.range)
+                }
+            } catch {
+                print("Nope")
+            }
         }
+        
+        articleTextView.attributedText = attributed
     }
 }
