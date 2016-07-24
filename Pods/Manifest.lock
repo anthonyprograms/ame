@@ -1,0 +1,13 @@
+PODS:
+  - Alamofire (3.4.1)
+  - Cosmos (1.2.3)
+
+DEPENDENCIES:
+  - Alamofire (~> 3.4)
+  - Cosmos (~> 1.1)
+
+SPEC CHECKSUMS:
+  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
+  Cosmos: efddd01b729956ad6335bc58bc92e5735a1d12a3
+
+COCOAPODS: 0.39.0

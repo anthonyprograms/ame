@@ -1,0 +1,428 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4CDE0B9D7B2231CB177632E8 /* Pods_Verus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C9B5A4FF721F1ADF57846E1 /* Pods_Verus.framework */; };
+		92D8CDBD1D43EDA80064AF30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D8CDBC1D43EDA80064AF30 /* AppDelegate.swift */; };
+		92D8CDBF1D43EDA80064AF30 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D8CDBE1D43EDA80064AF30 /* ViewController.swift */; };
+		92D8CDC21D43EDA80064AF30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92D8CDC01D43EDA80064AF30 /* Main.storyboard */; };
+		92D8CDC41D43EDA80064AF30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92D8CDC31D43EDA80064AF30 /* Assets.xcassets */; };
+		92D8CDC71D43EDA80064AF30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92D8CDC51D43EDA80064AF30 /* LaunchScreen.storyboard */; };
+		92D8CDCF1D43F0CB0064AF30 /* VERArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D8CDCE1D43F0CB0064AF30 /* VERArticleViewController.swift */; };
+		92D8CDD11D43FA5A0064AF30 /* VERHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D8CDD01D43FA5A0064AF30 /* VERHTTPClient.swift */; };
+		92D8CDD31D4410600064AF30 /* VERArticleTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D8CDD21D4410600064AF30 /* VERArticleTextTableViewCell.swift */; };
+		92D8CDD51D441E5B0064AF30 /* VERCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D8CDD41D441E5B0064AF30 /* VERCoreDataStack.swift */; };
+		92D8CDD71D4463CB0064AF30 /* VERArticleCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D8CDD61D4463CB0064AF30 /* VERArticleCache.swift */; };
+		92D8CDDA1D4464550064AF30 /* Articles.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 92D8CDD81D4464550064AF30 /* Articles.xcdatamodeld */; };
+		92D8CDDD1D4465330064AF30 /* Article+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D8CDDB1D4465330064AF30 /* Article+CoreDataProperties.swift */; };
+		92D8CDDE1D4465330064AF30 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D8CDDC1D4465330064AF30 /* Article.swift */; };
+		92D8CDE11D4488730064AF30 /* VERStarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D8CDE01D4488730064AF30 /* VERStarTableViewCell.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3C9B5A4FF721F1ADF57846E1 /* Pods_Verus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Verus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B3E2B271717859F37006E68 /* Pods-Verus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Verus.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Verus/Pods-Verus.debug.xcconfig"; sourceTree = "<group>"; };
+		92D8CDB91D43EDA80064AF30 /* Verus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Verus.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		92D8CDBC1D43EDA80064AF30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		92D8CDBE1D43EDA80064AF30 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		92D8CDC11D43EDA80064AF30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		92D8CDC31D43EDA80064AF30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		92D8CDC61D43EDA80064AF30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		92D8CDC81D43EDA80064AF30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		92D8CDCE1D43F0CB0064AF30 /* VERArticleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VERArticleViewController.swift; sourceTree = "<group>"; };
+		92D8CDD01D43FA5A0064AF30 /* VERHTTPClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VERHTTPClient.swift; sourceTree = "<group>"; };
+		92D8CDD21D4410600064AF30 /* VERArticleTextTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VERArticleTextTableViewCell.swift; sourceTree = "<group>"; };
+		92D8CDD41D441E5B0064AF30 /* VERCoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VERCoreDataStack.swift; sourceTree = "<group>"; };
+		92D8CDD61D4463CB0064AF30 /* VERArticleCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VERArticleCache.swift; sourceTree = "<group>"; };
+		92D8CDD91D4464550064AF30 /* Articles.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Articles.xcdatamodel; sourceTree = "<group>"; };
+		92D8CDDB1D4465330064AF30 /* Article+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Article+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		92D8CDDC1D4465330064AF30 /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
+		92D8CDE01D4488730064AF30 /* VERStarTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VERStarTableViewCell.swift; sourceTree = "<group>"; };
+		F43AF793AF8918092DC35D1F /* Pods-Verus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Verus.release.xcconfig"; path = "Pods/Target Support Files/Pods-Verus/Pods-Verus.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		92D8CDB61D43EDA80064AF30 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4CDE0B9D7B2231CB177632E8 /* Pods_Verus.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		92D8CDB01D43EDA80064AF30 = {
+			isa = PBXGroup;
+			children = (
+				92D8CDBB1D43EDA80064AF30 /* Verus */,
+				92D8CDBA1D43EDA80064AF30 /* Products */,
+				D7E1A1642687C048F752AF0F /* Pods */,
+				D3E4090ADB35006A7E41DE6E /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		92D8CDBA1D43EDA80064AF30 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				92D8CDB91D43EDA80064AF30 /* Verus.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		92D8CDBB1D43EDA80064AF30 /* Verus */ = {
+			isa = PBXGroup;
+			children = (
+				92D8CDBC1D43EDA80064AF30 /* AppDelegate.swift */,
+				92D8CDBE1D43EDA80064AF30 /* ViewController.swift */,
+				92D8CDCE1D43F0CB0064AF30 /* VERArticleViewController.swift */,
+				92D8CDE01D4488730064AF30 /* VERStarTableViewCell.swift */,
+				92D8CDD21D4410600064AF30 /* VERArticleTextTableViewCell.swift */,
+				92D8CDDF1D44653B0064AF30 /* Model */,
+				92D8CDC01D43EDA80064AF30 /* Main.storyboard */,
+				92D8CDC31D43EDA80064AF30 /* Assets.xcassets */,
+				92D8CDC51D43EDA80064AF30 /* LaunchScreen.storyboard */,
+				92D8CDC81D43EDA80064AF30 /* Info.plist */,
+			);
+			path = Verus;
+			sourceTree = "<group>";
+		};
+		92D8CDDF1D44653B0064AF30 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				92D8CDD01D43FA5A0064AF30 /* VERHTTPClient.swift */,
+				92D8CDD61D4463CB0064AF30 /* VERArticleCache.swift */,
+				92D8CDD41D441E5B0064AF30 /* VERCoreDataStack.swift */,
+				92D8CDDB1D4465330064AF30 /* Article+CoreDataProperties.swift */,
+				92D8CDDC1D4465330064AF30 /* Article.swift */,
+				92D8CDD81D4464550064AF30 /* Articles.xcdatamodeld */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		D3E4090ADB35006A7E41DE6E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3C9B5A4FF721F1ADF57846E1 /* Pods_Verus.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D7E1A1642687C048F752AF0F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8B3E2B271717859F37006E68 /* Pods-Verus.debug.xcconfig */,
+				F43AF793AF8918092DC35D1F /* Pods-Verus.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		92D8CDB81D43EDA80064AF30 /* Verus */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 92D8CDCB1D43EDA80064AF30 /* Build configuration list for PBXNativeTarget "Verus" */;
+			buildPhases = (
+				443423DF46011440F122BBBC /* Check Pods Manifest.lock */,
+				92D8CDB51D43EDA80064AF30 /* Sources */,
+				92D8CDB61D43EDA80064AF30 /* Frameworks */,
+				92D8CDB71D43EDA80064AF30 /* Resources */,
+				01D6644F563EEC5374D20B2A /* Embed Pods Frameworks */,
+				5586CE4A0550E129B6AB37DD /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Verus;
+			productName = Verus;
+			productReference = 92D8CDB91D43EDA80064AF30 /* Verus.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		92D8CDB11D43EDA80064AF30 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = Verus;
+				TargetAttributes = {
+					92D8CDB81D43EDA80064AF30 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 92D8CDB41D43EDA80064AF30 /* Build configuration list for PBXProject "Verus" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 92D8CDB01D43EDA80064AF30;
+			productRefGroup = 92D8CDBA1D43EDA80064AF30 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				92D8CDB81D43EDA80064AF30 /* Verus */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		92D8CDB71D43EDA80064AF30 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92D8CDC71D43EDA80064AF30 /* LaunchScreen.storyboard in Resources */,
+				92D8CDC41D43EDA80064AF30 /* Assets.xcassets in Resources */,
+				92D8CDC21D43EDA80064AF30 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		01D6644F563EEC5374D20B2A /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Verus/Pods-Verus-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		443423DF46011440F122BBBC /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		5586CE4A0550E129B6AB37DD /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Verus/Pods-Verus-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		92D8CDB51D43EDA80064AF30 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92D8CDBF1D43EDA80064AF30 /* ViewController.swift in Sources */,
+				92D8CDD51D441E5B0064AF30 /* VERCoreDataStack.swift in Sources */,
+				92D8CDDD1D4465330064AF30 /* Article+CoreDataProperties.swift in Sources */,
+				92D8CDBD1D43EDA80064AF30 /* AppDelegate.swift in Sources */,
+				92D8CDDE1D4465330064AF30 /* Article.swift in Sources */,
+				92D8CDD11D43FA5A0064AF30 /* VERHTTPClient.swift in Sources */,
+				92D8CDE11D4488730064AF30 /* VERStarTableViewCell.swift in Sources */,
+				92D8CDDA1D4464550064AF30 /* Articles.xcdatamodeld in Sources */,
+				92D8CDD31D4410600064AF30 /* VERArticleTextTableViewCell.swift in Sources */,
+				92D8CDCF1D43F0CB0064AF30 /* VERArticleViewController.swift in Sources */,
+				92D8CDD71D4463CB0064AF30 /* VERArticleCache.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		92D8CDC01D43EDA80064AF30 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				92D8CDC11D43EDA80064AF30 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		92D8CDC51D43EDA80064AF30 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				92D8CDC61D43EDA80064AF30 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		92D8CDC91D43EDA80064AF30 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		92D8CDCA1D43EDA80064AF30 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		92D8CDCC1D43EDA80064AF30 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8B3E2B271717859F37006E68 /* Pods-Verus.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Verus/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = VER.Verus;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		92D8CDCD1D43EDA80064AF30 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F43AF793AF8918092DC35D1F /* Pods-Verus.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Verus/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = VER.Verus;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		92D8CDB41D43EDA80064AF30 /* Build configuration list for PBXProject "Verus" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				92D8CDC91D43EDA80064AF30 /* Debug */,
+				92D8CDCA1D43EDA80064AF30 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		92D8CDCB1D43EDA80064AF30 /* Build configuration list for PBXNativeTarget "Verus" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				92D8CDCC1D43EDA80064AF30 /* Debug */,
+				92D8CDCD1D43EDA80064AF30 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		92D8CDD81D4464550064AF30 /* Articles.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				92D8CDD91D4464550064AF30 /* Articles.xcdatamodel */,
+			);
+			currentVersion = 92D8CDD91D4464550064AF30 /* Articles.xcdatamodel */;
+			path = Articles.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 92D8CDB11D43EDA80064AF30 /* Project object */;
+}
