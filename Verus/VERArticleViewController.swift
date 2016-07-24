@@ -51,7 +51,7 @@ class VERArticleViewController: UIViewController {
         
         VERHTTPClient().getText(link!) { data in
             guard let text = data["text"] else { return }
-            self.articleTextView.text = "\(text!)"
+            self.articleTextView.attributedText = NSAttributedString(string: "\(text!)")
         }
         
         VERHTTPClient().getTitle(link!) { data in
@@ -80,7 +80,8 @@ class VERArticleViewController: UIViewController {
         ratingView.settings.starSize = 30
         ratingView.settings.starMargin = 5
         ratingView.settings.filledColor = UIColor(red: 0/255, green: 138/255, blue: 230/255, alpha: 1)
-//        ratingView.settings.emptyBorderColor = UIColor(red: 32/255, green: 206/255, blue: 153/255, alpha: 1)
+        ratingView.settings.filledBorderColor = UIColor(red: 0/255, green: 138/255, blue: 230/255, alpha: 1)
+        ratingView.settings.emptyBorderColor = UIColor(red: 0/255, green: 138/255, blue: 230/255, alpha: 1)
         ratingView.settings.updateOnTouch = false
         view.addSubview(ratingView)
         
@@ -97,7 +98,6 @@ class VERArticleViewController: UIViewController {
         articleTextView.frame = CGRectMake(0, titleLabel.frame.maxY + 10, titleLabel.frame.width, view.frame.size.height - titleLabel.frame.maxY - 20)
         articleTextView.center.x = view.center.x
         articleTextView.font = UIFont.systemFontOfSize(15)
-        articleTextView.text = ""
         articleTextView.textColor = .blackColor()
         view.addSubview(articleTextView)
     }
@@ -113,7 +113,15 @@ class VERArticleViewController: UIViewController {
                 let regex = try NSRegularExpression(pattern: keyword["text"] as! String, options: .CaseInsensitive)
                 
                 for match in regex.matchesInString(text, options: NSMatchingOptions(), range: NSRange(location: 0, length: text.characters.count)) as [NSTextCheckingResult] {
-                    attributed.addAttribute(NSForegroundColorAttributeName, value: UIColor(red: 255/255, green: 51/255, blue: 51/255, alpha: 1), range: match.range)
+                    
+                    
+                    guard let sentiment = keyword["sentiment"],
+                        let type = sentiment["type"] else { return }
+                    
+                    let t = type as! String
+                    if t == "negative" {
+                        attributed.addAttribute(NSForegroundColorAttributeName, value: UIColor(red: 255/255, green: 51/255, blue: 51/255, alpha: 1), range: match.range)
+                    }
                 }
             } catch {
                 print("Nope")

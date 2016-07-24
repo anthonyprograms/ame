@@ -45,10 +45,11 @@ class VERHTTPClient: NSObject {
     }
     
     func getKeywords(link: String, completion: (data: AnyObject) -> ()) {
-        Alamofire.request(.POST, keywordDomain, parameters: ["url": link])
+        Alamofire.request(.POST, keywordDomain, parameters: ["url": link, "sentiment": 1])
             .responseJSON { response in
                 if let JSON = response.result.value {
                     completion(data: JSON)
+                    print(JSON)
                 }
             }
     }

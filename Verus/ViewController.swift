@@ -60,7 +60,7 @@ class ViewController: UIViewController {
         view.addSubview(tableView)
         
         averageRatingLabel.frame = CGRectMake(view.frame.size.width-60, 20, 50, 50)
-        averageRatingLabel.text = "-"
+        averageRatingLabel.text = "🤔"
         averageRatingLabel.textColor = .blackColor()
         averageRatingLabel.font = UIFont(name: "Helvetica", size: 30)
         averageRatingLabel.backgroundColor = .clearColor()
@@ -77,10 +77,14 @@ class ViewController: UIViewController {
             if let avgRating = generateAverageRating(articles) {
                 self.averageRatingLabel.text = "\(avgRating.roundToPlaces(1))"
             }
+            
+            
         }
     }
     
     func populateTableView(articles: [NSDictionary]) {
+        self.links = []
+        
         for article in articles {
             guard let link = article["link"] else { return }
             self.links.append(link as! String)
@@ -106,7 +110,10 @@ class ViewController: UIViewController {
     
     func submitAction() {
         if linkField.text != nil {
-            let articleVC = VERArticleViewController(link: linkField.text!, managedContext: managedContext)
+            let link = linkField.text!
+            linkField.text = ""
+            
+            let articleVC = VERArticleViewController(link: link, managedContext: managedContext)
             
             self.navigationController?.pushViewController(articleVC, animated: true)
         }
