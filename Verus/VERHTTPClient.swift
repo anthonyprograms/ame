@@ -49,7 +49,6 @@ class VERHTTPClient: NSObject {
             .responseJSON { response in
                 if let JSON = response.result.value {
                     completion(data: JSON)
-                    print(JSON)
                 }
             }
     }

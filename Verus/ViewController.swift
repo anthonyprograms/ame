@@ -77,8 +77,6 @@ class ViewController: UIViewController {
             if let avgRating = generateAverageRating(articles) {
                 self.averageRatingLabel.text = "\(avgRating.roundToPlaces(1))"
             }
-            
-            
         }
     }
     

@@ -23,6 +23,7 @@ class VERArticleViewController: UIViewController {
     
     var keywords: [NSDictionary] = []
     var rating = "1.0"
+    var analysis = ""
     
     init(link: String, managedContext: NSManagedObjectContext) {
         super.init(nibName: nil, bundle: nil)
@@ -46,6 +47,20 @@ class VERArticleViewController: UIViewController {
                 self.ratingView.rating = abs(Double("\(score)")! * 5)
                 
                 VERArticleCache(managedContext: self.managedContext).saveArticle(self.link, rating: CGFloat(self.ratingView.rating))
+                
+                if self.ratingView.rating > 4 {
+                    self.analysis = "Very Positive"
+                } else if self.ratingView.rating > 3 {
+                    self.analysis = "Positive"
+                } else if self.ratingView.rating > 2 {
+                    self.analysis = "Neutral"
+                } else if self.ratingView.rating > 1 {
+                    self.analysis = "Negative"
+                } else {
+                    self.analysis = "Very Negative"
+                }
+                
+                self.ratingView.text = self.analysis
             }
         }
         
@@ -73,7 +88,7 @@ class VERArticleViewController: UIViewController {
         view.backgroundColor = UIColor.whiteColor()
         
         // Rating (CosmoView)
-        ratingView.frame = CGRectMake(20, 80, view.frame.size.width/2, 40)
+        ratingView.frame = CGRectMake(20, 80, view.frame.size.width/2+40, 40)
         ratingView.center.x = view.center.x
         ratingView.rating = Double(self.rating)!
         ratingView.settings.fillMode = .Precise
